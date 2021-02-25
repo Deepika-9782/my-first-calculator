@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grade calculator 💡</title>
+    <style>
+      .subject {
+        padding: 10px;
+        border-radius:8px;
+        border-color: black;
+        background: rgba(0,0,0,-8);
+        
+      }
+      .credits {
+        padding: 10px;
+        border-radius:8px;
+        border-color: black;
+        background: rgba(0,0,0,-8);
+      }
+      .con {
+        width: 100%;
+        margin: 0 auto;
+       
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+       
+      }
+
+      .btn {
+        padding: 10px;
+        background-color: black;
+        display: block;
+        color: white;
+        border: none;
+        margin: 20px auto;
+        border-radius: 7px;
+        border-color: black;
+        
+      }
+      .box{
+        position: relative;
+        width:700px;
+        height: 800px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: :#060c21;
+      }
+      .box:before{
+        content: ' ';
+        position: absolute;
+        top:-3px;
+        left:-3px;
+        right:-3px;
+        bottom:-3px;
+        background: #fff;
+        z-index:-2;
+      }
+      .box:after{
+        content: ' ';
+        position: absolute;
+        top:-3px;
+        left:-3px;
+        right:-3px;
+        bottom:-3px;
+        background: #fff;
+        z-index:-3;
+
+        filter: blur(50px);
+      } 
+      .box:before,
+      .box:after{
+        background: linear-gradient(235deg,#89ff00,#060c21,#00bcd4);
+      }
+      .content{
+        padding: 20px;
+        box-sizing: border-box;
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="content"> 
+    <div class="con">
+      <h1 style="background-color:rgb(1, 5, 7);">SGPA Calculator</h1>
+      <div>
+        <input class="subject" placeholder="sub1" />
+        <input class="credits" placeholder="credits1" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub2" />
+        <input class="credits" placeholder="credits2" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub3" />
+        <input class="credits" placeholder="credits3" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub4" />
+        <input class="credits" placeholder="credits4" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub5" />
+        <input class="credits" placeholder="credits5" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub6" />
+        <input class="credits" placeholder="credits6" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub7" />
+        <input class="credits" placeholder="credits7" />
+      </div>
+      <div>
+        <input class="subject" placeholder="sub8" />
+        <input class="credits" placeholder="credits8" />
+      </div>
+      
+    </div>
+    
+  </div>
+  <button onclick="getResult()" class="btn">Calculate</button>
+</div>
+  </body>
+
+  <script>
+    let marks = [];
+    let credits = [];
+    function getResult() {
+      // getting the html codes
+      let all_marks = Array.from(document.querySelectorAll(".subject"));
+      // getting the values from html input boxes
+      all_marks.forEach((node) => {
+        marks.push(node.value);
+      });
+
+      let all_credits = Array.from(document.querySelectorAll(".credits"));
+      // getting the values from html input boxes
+      all_credits.forEach((node) => {
+        credits.push(node.value);
+      });
+
+      let sum = 0;
+      let total_credits = 0;
+      // marks[0]*credits[0] + marks[1]*credits[1]...
+      for (let i = 0; i < 8; i++) {
+        sum = sum + marks[i] * credits[i];
+        total_credits += parseInt(credits[i]);
+      }
+      const h1 = document.createElement("h1");
+      h1.innerText = sum / total_credits;
+      h1.style.textAlign = "center";
+      document.body.append(h1);
+    }
+  </script>
+</html>
